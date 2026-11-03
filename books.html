@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Library Books | LibraFlow</title>
+
+    <link rel="stylesheet" href="css/books.css">
+
+    <style>
+        /* Student read-only view */
+        body.student-view #addBookBtn,
+        body.student-view #bookFormSection,
+        body.student-view .admin-action,
+        body.student-view th:last-child,
+        body.student-view td:last-child {
+            display: none !important;
+        }
+    </style>
+
+    <script>
+        const role = localStorage.getItem("userRole");
+
+        if (
+            localStorage.getItem("loggedIn") !== "true" ||
+            !["admin", "student"].includes(role)
+        ) {
+            window.location.replace("login.html");
+        }
+
+        if (role === "student") {
+            document.documentElement.classList.add("student-view");
+        }
+    </script>
+
+    <script src="js/demo-data.js"></script>
+    <script src="js/books.js" defer></script>
+    <link rel="stylesheet" href="css/polish.css">
+    <link rel="stylesheet" href="css/professional.css">
+</head>
+
+<body>
+
+    <script>
+        if (localStorage.getItem("userRole") === "student") {
+            document.body.classList.add("student-view");
+        }
+    </script>
+
+    <div class="page-container">
+
+        <header class="page-header">
+            <div>
+                <a href="index.html" class="back-link">← Dashboard</a>
+
+                <h1 id="pageTitle">Book Management</h1>
+
+                <p id="pageDescription">
+                    Manage your library collection in one place.
+                </p>
+            </div>
+
+            <button id="addBookBtn" class="primary-btn admin-action">
+                + Add New Book
+            </button>
+        </header>
+
+        <!-- Statistics -->
+        <section class="book-stats">
+
+            <div class="stat-box">
+                <span>Total Books</span>
+                <h2 id="totalBooks">0</h2>
+            </div>
+
+            <div class="stat-box">
+                <span>Available Copies</span>
+                <h2 id="availableBooks">0</h2>
+            </div>
+
+            <div class="stat-box">
+                <span>Categories</span>
+                <h2 id="totalCategories">0</h2>
+            </div>
+
+        </section>
+
+        <!-- Admin Add Book Form -->
+        <section id="bookFormSection" class="form-card hidden admin-action">
+
+            <h2 id="formTitle">Add New Book</h2>
+
+            <form id="bookForm">
+
+                <div class="form-grid">
+
+                    <div>
+                        <label for="bookTitle">Book Title</label>
+                        <input type="text" id="bookTitle"
+                            placeholder="Enter book title" required>
+                    </div>
+
+                    <div>
+                        <label for="author">Author Name</label>
+                        <input type="text" id="author"
+                            placeholder="Enter author name" required>
+                    </div>
+
+                    <div>
+                        <label for="isbn">ISBN Number</label>
+                        <input type="text" id="isbn"
+                            placeholder="Enter ISBN" required>
+                    </div>
+
+                    <div>
+                        <label for="category">Category</label>
+                        <select id="category" required>
+                            <option value="">Select Category</option>
+                            <option>Programming</option>
+                            <option>Computer Science</option>
+                            <option>Mathematics</option>
+                            <option>Physics</option>
+                            <option>Fiction</option>
+                            <option>Database</option>
+                            <option>Networking</option>
+                            <option>Artificial Intelligence</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="quantity">Total Quantity</label>
+                        <input type="number" id="quantity"
+                            min="1" step="1"
+                            placeholder="Enter quantity" required>
+                    </div>
+
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="cancelBtn"
+                        class="cancel-btn">Cancel</button>
+
+                    <button type="submit" class="primary-btn">
+                        Save Book
+                    </button>
+                </div>
+
+                <p id="formMessage"></p>
+
+            </form>
+
+        </section>
+
+        <!-- Search and Filter -->
+        <section class="search-card">
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search by title, author or ISBN..."
+            >
+
+            <select id="filterCategory">
+                <option value="all">All Categories</option>
+                <option>Programming</option>
+                <option>Computer Science</option>
+                <option>Mathematics</option>
+                <option>Physics</option>
+                <option>Fiction</option>
+                <option>Database</option>
+                <option>Networking</option>
+                <option>Artificial Intelligence</option>
+                <option>Other</option>
+            </select>
+
+        </section>
+
+        <!-- Book Table -->
+        <section class="table-card">
+
+            <div class="table-heading">
+                <h2 id="tableTitle">All Books</h2>
+                <span id="bookCount">0 books</span>
+            </div>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Book Title</th>
+                            <th>Author</th>
+                            <th>ISBN</th>
+                            <th>Category</th>
+                            <th>Quantity</th>
+                            <th>Available</th>
+                            <th class="admin-action">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="bookTableBody">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <p id="emptyMessage" class="empty-message">
+                No books found in the library.
+            </p>
+
+        </section>
+
+    </div>
+
+    <script>
+        if (localStorage.getItem("userRole") === "student") {
+            document.getElementById("pageTitle").textContent =
+                "Library Books";
+
+            document.getElementById("pageDescription").textContent =
+                "Browse books available in your library.";
+
+            document.getElementById("tableTitle").textContent =
+                "Library Collection";
+        }
+    </script>
+
+</body>
+</html>

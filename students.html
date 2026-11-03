@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management | LibraFlow</title>
+    <link rel="stylesheet" href="css/students.css">
+
+    
+    
+    <script>
+        if (
+            localStorage.getItem("loggedIn") !== "true" ||
+            localStorage.getItem("userRole") !== "admin"
+        ) {
+            window.location.replace("index.html");
+        }
+    </script>
+
+    <link rel="stylesheet" href="css/polish.css">
+    <link rel="stylesheet" href="css/professional.css">
+</head>
+<body>
+
+    <div class="page-container">
+
+        <header class="page-header">
+            <div>
+                <h1>Student Management</h1>
+                <p>Manage library student records</p>
+            </div>
+
+            <a href="index.html" class="back-btn">← Dashboard</a>
+        </header>
+
+        <!-- Statistics -->
+        <section class="stats-container">
+            <div class="stat-card">
+                <h3>Total Students</h3>
+                <p id="totalStudents">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Departments</h3>
+                <p id="totalDepartments">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Active Students</h3>
+                <p id="activeStudents">0</p>
+            </div>
+        </section>
+
+        <!-- Add Student Form -->
+        <section class="form-card">
+            <h2 id="formHeading">Add New Student</h2>
+
+            <form id="studentForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="studentName"
+                            placeholder="Enter student name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Student ID</label>
+                        <input type="text" id="studentId"
+                            placeholder="Enter student ID" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentEmail">Email Address</label>
+                        <input
+                            type="email"
+                            id="studentEmail"
+                            placeholder="Enter student email"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentPassword">Student Password</label>
+                        <input
+                            type="password"
+                            id="studentPassword"
+                            placeholder="Enter student password"
+                            minlength="8"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmStudentPassword">Confirm Password</label>
+                        <input
+                            type="password"
+                            id="confirmStudentPassword"
+                            placeholder="Confirm student password"
+                            minlength="8"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="studentPhone"
+                            placeholder="Enter phone number"
+                            pattern="[0-9]{10}" maxlength="10" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Department</label>
+                        <select id="studentDepartment" required>
+                            <option value="">Select Department</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Information Technology">Information Technology</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Mechanical">Mechanical</option>
+                            <option value="Civil">Civil</option>
+                            <option value="Electrical">Electrical</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Year / Semester</label>
+                        <select id="studentYear" required>
+                            <option value="">Select Year</option>
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                            <option value="4th Year">4th Year</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Student Status</label>
+                        <select id="studentStatus" required>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" id="submitBtn">Add Student</button>
+                    <button type="button" id="cancelBtn" class="cancel-btn">
+                        Cancel
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- Student List -->
+        <section class="table-card">
+
+            <div class="table-header">
+                <h2>Student Records</h2>
+
+                <div class="filters">
+                    <input type="search" id="searchStudent"
+                        placeholder="Search student...">
+
+                    <select id="departmentFilter">
+                        <option value="">All Departments</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Mechanical">Mechanical</option>
+                        <option value="Civil">Civil</option>
+                        <option value="Electrical">Electrical</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Student ID</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Department</th>
+                            <th>Year</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="studentTableBody">
+                        <!-- JavaScript will add student records here -->
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+    </div>
+
+    <script src="js/demo-data.js"></script>
+    <script src="js/students.js"></script>
+</body>
+</html>

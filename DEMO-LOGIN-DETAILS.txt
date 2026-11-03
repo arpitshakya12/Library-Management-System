@@ -1,0 +1,28 @@
+LIBRAFLOW - DEMO DATA
+
+Admin login:
+Email: admin@libraflow.com
+Password: admin123
+
+Sample student logins:
+Rahul Sharma | rahul.demo@libraflow.com | Rahul@123
+Priya Verma | priya.demo@libraflow.com | Priya@123
+Aman Kumar | aman.demo@libraflow.com | Aman@123
+Sneha Singh | sneha.demo@libraflow.com | Sneha@123
+Rohan Gupta | rohan.demo@libraflow.com | Rohan@123
+Neha Patel | neha.demo@libraflow.com | Neha@123
+Karan Mehta | karan.demo@libraflow.com | Karan@123
+Anjali Gupta | anjali.demo@libraflow.com | Anjali@123
+Vikram Singh | vikram.demo@libraflow.com | Vikram@123
+Pooja Sharma | pooja.demo@libraflow.com | Pooja@123
+
+DEMO DATA BEHAVIOUR
+- Sample books and transactions are inserted automatically on first visit.
+- The 10 sample students are added if missing, including when upgrading from an older demo ZIP; existing/custom student records are preserved.
+- Existing non-empty LocalStorage records are preserved.
+- Admin can edit/delete sample books and students like normal records.
+- Changes remain in the same browser's LocalStorage after refresh.
+- To restore the original sample data for a fresh demonstration, clear site data for this website in the browser and reload.
+
+IMPORTANT
+This is a front-end academic demo. Authentication and passwords are stored in browser LocalStorage and are not suitable for real-world production use.

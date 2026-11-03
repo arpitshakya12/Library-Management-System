@@ -1,0 +1,115 @@
+/* LibraFlow Professional UI — refined SaaS-style visual layer */
+:root{
+ --lf-brand:#4f46e5;--lf-brand-strong:#4338ca;--lf-ink:#172033;--lf-muted:#667085;
+ --lf-bg:#f7f8fc;--lf-card:#fff;--lf-line:#e7eaf1;--lf-soft:#f1f3ff;
+ --lf-elev:0 2px 5px rgba(16,24,40,.03),0 14px 34px rgba(16,24,40,.055);
+}
+html{scroll-behavior:smooth}
+body{font-family:Inter,"Segoe UI",Roboto,Arial,sans-serif!important;background:var(--lf-bg)!important;color:var(--lf-ink)!important;letter-spacing:.05px}
+::selection{background:#dcd9ff;color:#29216e}
+a{text-underline-offset:3px}
+button,input,select,textarea{font:inherit}
+button,a{ -webkit-tap-highlight-color:transparent }
+:focus-visible{outline:3px solid rgba(79,70,229,.22)!important;outline-offset:2px}
+/* Sidebar / navigation */
+.sidebar{background:#151b31!important;color:#e8ebff!important;border:0!important;box-shadow:8px 0 30px rgba(19,27,54,.08)!important}
+.sidebar .logo h2,.sidebar .logo h2 span{color:#fff!important}
+.sidebar .logo-icon{border-radius:13px;background:linear-gradient(145deg,#756cf5,#a39cff);padding:9px;box-shadow:0 7px 20px #6b63e955}
+.sidebar .menu-heading{color:#8791b2!important;letter-spacing:1.15px;text-transform:uppercase;font-size:10px!important}
+.sidebar nav{gap:6px!important}
+.sidebar .nav-link{color:#aeb7d0!important;border:1px solid transparent;transition:all .2s ease}
+.sidebar .nav-link:hover{color:#fff!important;background:rgba(255,255,255,.075)!important;transform:translateX(2px)}
+.sidebar .nav-link.active{color:#fff!important;background:linear-gradient(100deg,rgba(112,103,245,.34),rgba(112,103,245,.12))!important;border-color:rgba(160,153,255,.18)!important;box-shadow:inset 3px 0 #938cff}
+.sidebar .sidebar-footer{border-color:rgba(255,255,255,.12)!important}
+.sidebar .profile-avatar{background:linear-gradient(135deg,#7168ef,#a19aff)!important}
+/* Content header */
+.main-content{min-width:0}
+.topbar,.page-header{align-items:center}
+.topbar h1,.page-header h1,.header h1{font-size:clamp(25px,2.2vw,32px)!important;line-height:1.2;font-weight:780!important;letter-spacing:-1.1px!important;color:#182238!important}
+.topbar p,.page-header p,.header p{font-size:13.5px!important;color:#7b8498!important;line-height:1.65}
+.back-link,.back-btn{font-weight:650!important;letter-spacing:.1px}
+/* Dashboard metric tiles */
+.stats-grid,.book-stats,.stats-container,.stats{gap:17px!important}
+.stat-card,.stat-box,.stats .stat-card{background:#fff!important;border:1px solid var(--lf-line)!important;border-radius:16px!important;box-shadow:var(--lf-elev)!important;padding:21px 22px!important;transition:transform .2s ease,box-shadow .2s ease!important}
+.stat-card:hover,.stat-box:hover{transform:translateY(-3px);box-shadow:0 5px 10px rgba(16,24,40,.04),0 20px 40px rgba(16,24,40,.08)!important}
+.stat-card h2,.stat-box h2{font-size:29px!important;font-weight:780!important;letter-spacing:-1px!important;color:#19243a!important}
+.stat-card p,.stat-box p{font-size:12px!important;color:#7b8498!important;font-weight:600!important}
+.stat-icon{border-radius:13px!important}
+/* Surfaces */
+.form-card,.search-card,.table-card,.card,.content-card,.login-box{background:#fff!important;border:1px solid var(--lf-line)!important;border-radius:17px!important;box-shadow:var(--lf-elev)!important}
+.form-card,.table-card,.content-card{padding:24px!important}
+.form-card h2,.table-heading h2,.table-card h2,.card h2{font-size:17px!important;font-weight:750!important;letter-spacing:-.35px!important;color:#202b43!important}
+.search-card{padding:15px 17px!important;gap:12px!important}
+/* Controls */
+label,.form-group label{font-size:12px!important;font-weight:700!important;letter-spacing:.1px;color:#475467!important}
+input,select,textarea,.form-group input,.form-group select,.filters input,.filters select{
+ min-height:43px;border:1px solid #e1e5ee!important;border-radius:10px!important;background:#fff!important;
+ color:#253047!important;padding:11px 13px!important;font-size:13px!important;box-shadow:0 1px 2px rgba(16,24,40,.025)!important
+}
+textarea{min-height:100px}
+input:hover,select:hover,textarea:hover{border-color:#c4c9d8!important}
+input:focus,select:focus,textarea:focus,.form-group input:focus,.form-group select:focus{
+ border-color:#7770ec!important;box-shadow:0 0 0 4px rgba(79,70,229,.10)!important
+}
+input::placeholder,textarea::placeholder{color:#a0a7b7!important}
+/* Buttons */
+.primary-btn,.form-buttons button,.return-btn,.login-box button{
+ background:linear-gradient(135deg,#554be0,#756cf0)!important;color:#fff!important;border:0!important;border-radius:10px!important;
+ padding:11px 17px!important;font-size:13px!important;font-weight:700!important;box-shadow:0 5px 13px rgba(79,70,229,.19)!important
+}
+.primary-btn:hover,.form-buttons button:hover,.return-btn:hover,.login-box button:hover{transform:translateY(-1px);filter:brightness(1.045);box-shadow:0 8px 18px rgba(79,70,229,.25)!important}
+.cancel-btn{border:1px solid #e2e5ed!important;background:#fff!important;color:#596277!important;border-radius:10px!important}
+.action-btn{border-radius:8px!important;font-size:11px!important;font-weight:700!important;padding:7px 10px!important}
+.edit-btn{background:#eef2ff!important;color:#4338ca!important}
+.delete-btn{background:#fff1f1!important;color:#c2414b!important}
+/* Data tables */
+.table-wrapper{border:1px solid #edf0f5;border-radius:12px!important;overflow:auto}
+table{width:100%;border-collapse:separate!important;border-spacing:0!important}
+th{background:#f8f9fc!important;color:#737e92!important;font-size:10px!important;font-weight:750!important;letter-spacing:.8px!important;text-transform:uppercase}
+th,td{padding:14px 15px!important;border-bottom:1px solid #edf0f5!important}
+td{font-size:12.5px!important;color:#344054!important}
+tbody tr{background:#fff!important;transition:background .16s ease}
+tbody tr:hover{background:#f8f9ff!important}
+tbody tr:last-child td{border-bottom:0!important}
+.status{font-size:10px!important;font-weight:750!important;letter-spacing:.15px;border-radius:999px!important;padding:5px 9px!important}
+/* Login page */
+.login-container{background:#f7f8fc!important}
+.login-left{background:radial-gradient(circle at 80% 20%,rgba(255,255,255,.18),transparent 28%),linear-gradient(145deg,#22265f 0%,#4943bd 52%,#756cf0 100%)!important;position:relative;overflow:hidden}
+.login-left:before{content:"";position:absolute;width:470px;height:470px;border:1px solid rgba(255,255,255,.13);border-radius:50%;right:-180px;top:-160px}
+.login-left:after{content:"";position:absolute;width:290px;height:290px;border:1px solid rgba(255,255,255,.11);border-radius:50%;right:30px;bottom:-170px}
+.login-left>*{position:relative;z-index:1}
+.brand{font-weight:800!important;letter-spacing:-.7px}
+.welcome h1{font-size:clamp(34px,4vw,49px)!important;line-height:1.13!important;letter-spacing:-1.7px!important;font-weight:800!important}
+.welcome p{max-width:430px;line-height:1.75!important}
+.book-emoji{filter:drop-shadow(0 15px 20px rgba(0,0,0,.2))}
+.login-right{background:transparent!important}
+.login-box{padding:35px!important;max-width:420px!important}
+.login-box h2{font-size:27px!important;letter-spacing:-.8px!important;font-weight:800!important}
+.demo-info{background:#f5f4ff!important;border:1px solid #e5e2ff!important;border-radius:11px!important}
+/* Modal and alerts */
+.modal-content,.modal-box,.password-modal{border:1px solid var(--lf-line)!important;border-radius:18px!important;box-shadow:0 24px 70px rgba(16,24,40,.22)!important}
+.alert,.message,.success-message,.error-message{border-radius:10px!important}
+/* Keep any existing dark theme readable */
+body.dark{background:#101626!important;color:#edf0ff!important}
+body.dark .stat-card,body.dark .stat-box,body.dark .form-card,body.dark .search-card,body.dark .table-card,body.dark .card,body.dark .content-card{background:#192238!important;border-color:#2b3650!important}
+body.dark .stat-card h2,body.dark .stat-box h2,body.dark .form-card h2,body.dark .table-card h2,body.dark td{color:#edf0ff!important}
+body.dark th{background:#202b43!important;color:#aeb9d1!important}
+body.dark tbody tr{background:#192238!important}
+body.dark tbody tr:hover{background:#222e49!important}
+body.dark input,body.dark select,body.dark textarea{background:#151f34!important;color:#edf0ff!important;border-color:#34415d!important}
+/* Mobile and tablet */
+@media(max-width:1000px){.main-content{padding:24px!important}.page-container,.container{padding:25px!important}}
+@media(max-width:700px){
+ .main-content{padding:17px!important}.page-container,.container{padding:17px!important}
+ .page-header{align-items:flex-start!important;flex-direction:column!important}
+ .stats-grid,.book-stats,.stats-container,.stats{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:11px!important}
+ .stat-card,.stat-box{padding:16px!important}
+ .stat-card h2,.stat-box h2{font-size:24px!important}
+ .form-card,.table-card,.content-card{padding:17px!important}
+ .form-grid{grid-template-columns:1fr!important}
+ .search-card,.filters{flex-direction:column!important;align-items:stretch!important}
+ .search-card input,.search-card select,.filters input,.filters select{width:100%!important;max-width:none!important}
+ .login-left{min-height:260px!important;padding:30px!important}
+ .login-box{padding:25px!important;margin:20px!important}
+}
+@media(max-width:420px){.stats-grid,.book-stats,.stats-container,.stats{grid-template-columns:1fr!important}}

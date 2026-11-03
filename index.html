@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibraFlow - Library Management System</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    
+    
+    <script>
+        const loggedIn = localStorage.getItem("loggedIn");
+        const role = localStorage.getItem("userRole");
+
+        if (
+            loggedIn !== "true" ||
+            !["admin", "student"].includes(role)
+        ) {
+            window.location.replace("login.html");
+        } else if (role === "student") {
+
+            const email = (
+                localStorage.getItem("userEmail") || ""
+            ).toLowerCase();
+
+            let students = [];
+
+            try {
+                students = JSON.parse(
+                    localStorage.getItem("libraFlowStudents") || "[]"
+                );
+            } catch {
+                students = [];
+            }
+
+            const student = students.find(item =>
+                String(item.email || "").toLowerCase() === email
+            );
+
+            if (!student || student.status !== "Active") {
+                localStorage.removeItem("loggedIn");
+                localStorage.removeItem("userRole");
+                localStorage.removeItem("userEmail");
+
+                window.location.replace("login.html");
+            }
+
+            // No forced password change
+        }
+    </script>
+
+
+
+    <script src="js/demo-data.js"></script>
+    <script src="js/app.js" defer></script>
+    <link rel="stylesheet" href="css/polish.css">
+    <link rel="stylesheet" href="css/professional.css">
+</head>
+
+<body>
+<div class="app-container">
+
+    <aside class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">📚</span>
+            <h2>Libra<span>Flow</span></h2>
+        </div>
+
+        <p class="menu-heading">MAIN MENU</p>
+
+        <nav>
+            <a href="index.html" class="nav-link active">▦ Dashboard</a>
+            <a href="books.html" class="nav-link">📖 Books</a>
+            <a href="students.html" class="nav-link admin-only">👨‍🎓 Students</a>
+            <a href="issue-return.html#issue" class="nav-link admin-only">↗ Issue Books</a>
+            <a href="issue-return.html#records" class="nav-link admin-only">↙ Return Books</a>
+            <a href="issue-return.html#records" class="nav-link admin-only">📋 Transactions</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="profile-avatar" id="profileAvatar">U</div>
+            <div>
+                <h4 id="profileName">User</h4>
+                <p id="profileRole">Member</p>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1 id="dashboardTitle">Dashboard</h1>
+                <p id="welcomeMessage">Welcome to LibraFlow!</p>
+            </div>
+
+            <div class="topbar-right">
+                <span class="status">● System Online</span>
+                <button id="themeBtn" class="theme-btn">🌙</button>
+                <button id="logoutBtn" class="theme-btn">Logout</button>
+            </div>
+        </header>
+
+        <!-- ADMIN DASHBOARD -->
+        <div id="adminDashboard">
+
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon purple">📚</div>
+                    <p>Total Books</p>
+                    <h2 id="totalBooks">0</h2>
+                    <span>Library collection</span>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">👨‍🎓</div>
+                    <p>Total Students</p>
+                    <h2 id="totalStudents">0</h2>
+                    <span>Registered members</span>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">📤</div>
+                    <p>Books Issued</p>
+                    <h2 id="issuedBooks">0</h2>
+                    <span>Currently borrowed</span>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">📗</div>
+                    <p>Available Books</p>
+                    <h2 id="availableBooks">0</h2>
+                    <span>Ready to issue</span>
+                </div>
+            </section>
+
+            <section class="content-card">
+                <div class="section-header">
+                    <div>
+                        <h2>Recent Transactions</h2>
+                        <p>Latest library activities</p>
+                    </div>
+                    <a href="issue-return.html#records" class="view-btn">View All</a>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Book Name</th>
+                                <th>Issue Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentTransactions">
+                            <tr><td colspan="4">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- STUDENT DASHBOARD -->
+        <div id="studentDashboard" style="display:none;">
+
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon purple">📚</div>
+                    <p>Available Books</p>
+                    <h2 id="studentAvailableBooks">0</h2>
+                    <span>Books in library</span>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">📖</div>
+                    <p>My Issued Books</p>
+                    <h2 id="myIssuedBooks">0</h2>
+                    <span>Currently borrowed</span>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">⏰</div>
+                    <p>Overdue Books</p>
+                    <h2 id="myOverdueBooks">0</h2>
+                    <span>Past due date</span>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">₹</div>
+                    <p>My Total Fine</p>
+                    <h2 id="myTotalFine">₹0</h2>
+                    <span>Calculated at ₹5 per late day</span>
+                </div>
+            </section>
+
+            <section class="content-card">
+                <div class="section-header">
+                    <div>
+                        <h2>My Issued Books</h2>
+                        <p>Your personal borrowing records</p>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book Name</th>
+                                <th>Issue Date</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                                <th>Fine</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTransactions">
+                            <tr><td colspan="5">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="content-card">
+                <div class="section-header">
+                    <div>
+                        <h2>Available Books</h2>
+                        <p>Books currently available in the library</p>
+                    </div>
+                    <a href="books.html" class="view-btn">Browse Books</a>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book Name</th>
+                                <th>Author</th>
+                                <th>Category</th>
+                                <th>Available Copies</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentBookList">
+                            <tr><td colspan="4">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            © 2026 LibraFlow – Library Management System
+        </footer>
+
+    </main>
+</div>
+</body>
+</html>
